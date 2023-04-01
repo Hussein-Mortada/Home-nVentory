@@ -9,6 +9,8 @@ import dataaccess.ItemDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -139,6 +141,67 @@ public class HomeServlet extends HttpServlet {
                 catch(Exception ex){
                 }
 
+            }
+            else if(action.equals("edit")){
+                int itemid = Integer.parseInt((String) request.getParameter("itemId"));
+                ItemDB idb = new ItemDB();
+                try {
+                    Item item = idb.get(itemid);
+                    session.setAttribute("item", item);
+                    request.setAttribute("itemname", item.getItemName());
+                    request.setAttribute("itemprice", item.getPrice());
+                } catch (Exception ex) {
+                    Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    request.setAttribute("itemID",itemid );
+                    getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+                }
+            else if(action.equals("edititem")){
+                Item item = (Item)session.getAttribute("item");
+                String itemname = request.getParameter("itemname");
+                String testPrice = request.getParameter("price");
+                if(testPrice==null || testPrice.equals("")){
+                    request.setAttribute("message", "Enter a price");
+                    request.setAttribute("itemname", itemname);
+                    getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+                }
+                for(int i=0;i<testPrice.length();i++){
+                    char c = testPrice.charAt(i);
+                    if(!Character.isDigit(c)&&c!='.'){
+                        request.setAttribute("message", "Item price cannot have any letters... >:(");
+                        getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response); 
+                    }
+                }
+                Double itemprice = Double.parseDouble(testPrice);
+                int categoryID = Integer.parseInt(request.getParameter("category"));
+                if(itemname==null || itemname.equals("")){
+                    request.setAttribute("message", "Enter an item name");
+                    request.setAttribute("itemprice", itemprice);
+                    getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+                }
+                if(itemprice<0){
+                    request.setAttribute("itemname", itemname);
+                    request.setAttribute("message", "Price cannot be negative");
+                    getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+                }
+                ItemService is = new ItemService();
+                User user = (User)session.getAttribute("user");
+                try {
+                    item.setItemName(itemname);
+                    item.setPrice(itemprice);
+                    CategoryService cs = new CategoryService();
+                    Category cat = cs.get(categoryID);
+                    item.setCategory(cat);
+                    ItemDB idb = new ItemDB();
+                    idb.update(item);
+                } catch (Exception ex) {
+                    Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                List<Item> items = is.getAll(item.getOwner());
+                session.setAttribute("itemlist", items);
+                session.setAttribute("item",null );
+                request.setAttribute("message","Item modified");
+                getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
             }
     }
 

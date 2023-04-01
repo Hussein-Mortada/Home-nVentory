@@ -33,10 +33,10 @@
                 <tr>
                     <td>${item.getItemName()}</td>
                     <td>$${item.getPrice()}</td>
-                    <td>${item.getCategory().getCategoryName()}</td>
+                    <td>${item.getCategory().getCategoryName()} ITEM ID -> ${item.getItemId()}</td>
                     <td><form action="home" method="post"><input type="submit" value="Edit Item"><input type="hidden" name="action" value="edit"><input type="hidden" name="itemId" value="${item.getItemId()}"></form></td>
                     <td><form action="home" method="post"><input type="submit" value="Delete Item"><input type="hidden" name="action" value="delete"><input type="hidden" name="itemId" value="${item.getItemId()}"></form></td>
-                    <td><a href="home?action=delete&amp;itemId=${item.getItemId()}">Delete</a></td>
+                    
                 </tr>
             </c:forEach>
             </table>
@@ -59,13 +59,13 @@
         </c:if>
                 
         <c:if test="${itemID ne null}">
-            <h2>Edit Item</h2>
+            <h2>Edit Item</h2> ITEM ID -> ${item.getItemId()}
             <form action="" method="post">
                 Item Name <input type="text" name="itemname" value="${itemname}"><br>
                 Price: <input type="number" name="price" value="${itemprice}"><br>
                 Category:
                 <select name="category">
-                    <c:forEach items="${categoryList}" var="category">
+                    <c:forEach items="${categorylist}" var="category">
                     <option value="${category.getCategoryId()}">${category.getCategoryName()}</option>
                     </c:forEach>
                 </select><br>
