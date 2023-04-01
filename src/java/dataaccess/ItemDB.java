@@ -84,7 +84,7 @@ public class ItemDB {
             User user = item.getOwner();
             user.getItemList().remove(item);
             trans.begin();
-            em.remove(em.merge(user));
+            em.remove(em.merge(item));
             em.merge(user);
             trans.commit();
         }catch(Exception ex){

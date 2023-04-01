@@ -26,8 +26,13 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session =request.getSession();
-        if(session.getAttribute("email")!=null&&session.getAttribute("password")!=null){
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        User user  = (User) session.getAttribute("user");
+        if(session.getAttribute("user")!=null&&user.getRole().getRoleName().equals("regular user")){
+            //getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            response.sendRedirect("home");
+        }
+        else if(session.getAttribute("user")!=null&&user.getRole().getRoleName().equals("system admin")){
+            getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
         }
         else{
          getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
@@ -46,7 +51,7 @@ public class LoginServlet extends HttpServlet {
             String email=request.getParameter("email");
             String password=request.getParameter("password");
             if(email==null || email.equals("")||password==null||password.equals("")){
-                request.setAttribute("message", "Invalid Login.");
+                request.setAttribute("message", "Please don't leave any fields empty.");
                 getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
             }
             else{
@@ -55,22 +60,30 @@ public class LoginServlet extends HttpServlet {
                     User user = us.get(email);
 
                 if(user==null){
-                    request.setAttribute("message", "Invalid Login.");
+                    request.setAttribute("message", "User not found.");
                     request.setAttribute("email",email);
                     request.setAttribute("password","");
                     getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                 }
                 else if(!user.getActive()){
                     request.setAttribute("message", "User is inactive. Please message an administrator to reactivate your account");
+                    getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                 }
                 else if(!user.getPassword().equals(password)){
                     request.setAttribute("message", "Wrong password");
+                    request.setAttribute("email", email);
+                    getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+                }
+                else if(user.getRole().getRoleName().equals("system admin")){
+                  HttpSession session =request.getSession();
+                  session.setAttribute("user", user);
+                  getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
                 }
                 else{
                   HttpSession session =request.getSession();
-                  session.setAttribute("email", email);
-                  session.setAttribute("password", password);
-                  getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+                  session.setAttribute("user", user);
+                  response.sendRedirect("home");
+                  //getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
                     }
                 }
                 catch(Exception ex){

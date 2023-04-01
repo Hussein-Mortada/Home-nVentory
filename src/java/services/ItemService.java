@@ -46,15 +46,15 @@ public class ItemService {
         
         public boolean delete(User user,Integer itemID) throws Exception{
             ItemDB idb = new ItemDB();
-            if(itemID==null||user==null)
-                return false;
+//            if(itemID==null||user==null)
+//                return false;
             Item item = idb.get(itemID);
-            if(!item.getOwner().equals(user)){
-                return false;
-            }
-            if(item==null){
-                return false;
-            }
+//            if(!item.getOwner().equals(user)){
+//                return false;
+//            }
+//            if(item==null){
+//                return false;
+//            }
             idb.delete(item);
             return true;
         }
