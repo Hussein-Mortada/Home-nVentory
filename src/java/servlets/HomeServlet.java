@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
-
 import dataaccess.ItemDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,10 +16,6 @@ import models.User;
 import services.CategoryService;
 import services.ItemService;
 
-/**
- *
- * @author Hussein
- */
 public class HomeServlet extends HttpServlet {
 
 
@@ -64,7 +54,8 @@ public class HomeServlet extends HttpServlet {
                 response.sendRedirect("home");
             }
             if(action.equals("logout")){
-                session.setAttribute("user", null);
+                //session.setAttribute("user", null);
+                session.invalidate();
                 response.sendRedirect("login");
             }
             else if(action.equals("profile")){
