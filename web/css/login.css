@@ -1,0 +1,74 @@
+/* styles for the page header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+body{
+    font-family: Georgia, serif;
+}
+header h1 {
+    margin: 0;
+    
+    font-size: 3rem;
+    font-weight: bold;
+}
+h1{
+    margin-left: 48%;
+}
+/* styles for the login form */
+form {
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input[type="text"], 
+form input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #444;
+}
+
+/* styles for the "Sign Up" button */
+form + form input[type="submit"] {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+form + form input[type="submit"]:hover {
+    background-color: #eee;
+}
+
+/* styles for error messages */
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}

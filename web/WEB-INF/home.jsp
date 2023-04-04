@@ -6,6 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<link rel="stylesheet" type="text/css" href="css/home.css">
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +27,7 @@
         </form>
     </header>
     <body>
-        <h1>Hello ${user.getFirstName()}</h1>
+        <h1>Hello ${user.getFirstName()} , ${user.getLastName()}</h1>
         <c:if test="${empty itemlist}">No items yet. Please add some items!</c:if>
         <c:if test="${not empty itemlist}">
             <table border="1">
@@ -59,7 +62,7 @@
         </c:if>
                 
         <c:if test="${itemID ne null}">
-            <h2>Edit Item</h2> ITEM ID -> ${item.getItemId()}
+            <h2>Edit Item</h2>
             <form action="" method="post">
                 Item Name <input type="text" name="itemname" value="${itemname}"><br>
                 Price: <input type="number" name="price" value="${itemprice}"><br>

@@ -1,0 +1,128 @@
+/* body styles */
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* header styles */
+header {
+    background-color: #212121;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+header form {
+    margin: 0;
+}
+
+header input[type="submit"] {
+    background-color: #f44336;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+header input[type="submit"]:hover {
+    background-color: #ff6659;
+}
+
+/* form styles */
+form {
+    margin: 20px;
+}
+
+form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #444;
+}
+
+form input[type="text"] {
+    padding: 10px;
+    border-radius: 4px;
+    border: solid black;
+    font-size: 16px;
+}
+form input[type="password"] {
+    padding: 10px;
+    border-radius: 4px;
+    border: solid black;
+    font-size: 16px;
+}
+form select{
+    padding: 10px;
+    border-radius: 4px;
+    border: solid black;
+    font-size: 16px;
+}
+/* table styles */
+table {
+    border-collapse: collapse;
+    margin: 20px;
+    width: 60%;
+}
+
+th, td {
+    text-align: left;
+    padding: 3px;
+}
+
+th {
+    background-color: #212121;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 8px;
+  text-align: left;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  /* adjust the width as needed */
+  width: 100px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}

@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="css/admin.css">
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +20,7 @@
             <input type="hidden" name="action" value="logout">
         </form>
         <h1>Home nVentory</h1>
-        <h3>Administrator ${user.getFirstName()}</h3>
+        <h3>Administrator ${user.getFirstName()} , ${user.getLastName()}</h3>
     </header>
     <body>
         <h2>Welcome.  What would you like to do:</h2><br>

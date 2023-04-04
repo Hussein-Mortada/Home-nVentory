@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="css/profile.css">
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +26,7 @@
             <input type="hidden" name="action" value="home">
         </form>
     </header>
-        <h1>Profile Page</h1>
+        <h1>${user.getFirstName()} , ${user.getLastName()}'s Profile Page</h1>
         <form action="profile" method="post">
             Email: <input type="text" name="email" value="${user.getEmail()}" disabled="true"><br>
             First name: <input type="text" name="firstname" value="${user.getFirstName()}"><br>
