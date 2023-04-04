@@ -28,12 +28,12 @@
         <c:if test="${empty itemlist}">No items yet. Please add some items!</c:if>
         <c:if test="${not empty itemlist}">
             <table border="1">
-                <th>Item Name</th><th>Item Price</th><th>Item Category</th>
+                <th>Item Name</th><th>Item Price</th><th>Item Category</th><th>Edit</th><th>Delete</th>
             <c:forEach items="${itemlist}" var="item">
                 <tr>
                     <td>${item.getItemName()}</td>
                     <td>$${item.getPrice()}</td>
-                    <td>${item.getCategory().getCategoryName()} ITEM ID -> ${item.getItemId()}</td>
+                    <td>${item.getCategory().getCategoryName()}</td>
                     <td><form action="home" method="post"><input type="submit" value="Edit Item"><input type="hidden" name="action" value="edit"><input type="hidden" name="itemId" value="${item.getItemId()}"></form></td>
                     <td><form action="home" method="post"><input type="submit" value="Delete Item"><input type="hidden" name="action" value="delete"><input type="hidden" name="itemId" value="${item.getItemId()}"></form></td>
                     

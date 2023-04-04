@@ -54,7 +54,6 @@ public class HomeServlet extends HttpServlet {
                 response.sendRedirect("home");
             }
             if(action.equals("logout")){
-                //session.setAttribute("user", null);
                 session.invalidate();
                 response.sendRedirect("login");
             }
