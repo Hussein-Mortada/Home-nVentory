@@ -71,7 +71,7 @@ public class HomeServlet extends HttpServlet {
                 for(int i=0;i<testPrice.length();i++){
                     char c = testPrice.charAt(i);
                     if(!Character.isDigit(c)&&c!='.'){
-                        request.setAttribute("message", "Item price cannot have any letters... >:(");
+                        request.setAttribute("message", "Item price cannot be negative or have any letters");
                         getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response); 
                     }
                 }
