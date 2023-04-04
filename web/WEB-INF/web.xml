@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>Authorize</filter-name>
+        <filter-class>filters.Authorize</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>filters.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>ProfileServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>HomeServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Authorize</filter-name>
+        <servlet-name>ProfileServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Authorize</filter-name>
+        <servlet-name>HomeServlet</servlet-name>
+    </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>servlets.LoginServlet</servlet-class>
@@ -49,7 +73,7 @@
         <welcome-file>login</welcome-file>
     </welcome-file-list>
     <error-page>
-    <error-code>404</error-code>
-    <location>/WEB-INF/error404.html</location>
-</error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/error404.html</location>
+    </error-page>
 </web-app>
